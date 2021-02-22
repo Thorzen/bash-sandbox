@@ -4,9 +4,9 @@ max_num=100;
 num=$(($min_num + $RANDOM % $max_num)); #Rand number from min to max.
 re='^[0-9]+$';
 
-guess=-1
+guess=
 attempts=0
-while [[ $num != $guess ]]; do
+until [[ $num -eq $guess ]]; do
     printf "Guess a number between %s and %s\n" $min_num $max_num
     read -r guess;
     if ! [[ $guess =~ $re ]]; then 
@@ -16,7 +16,7 @@ while [[ $num != $guess ]]; do
     elif [[ $guess -gt $num ]]; then 
         echo "Guess Lower"
         ((attempts++))
-    else 
+    else
         echo "Guess Higher";
         ((attempts++))
     fi
